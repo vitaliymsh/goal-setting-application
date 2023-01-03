@@ -1,12 +1,111 @@
-* {
-    background: #FFFFFF;
-}
 
 
 header { 
-    text-align: center;
-    text-decoration: solid;
-    color: #808080;
+    display: block;
+    width: 100%;
+    height: 130px;
+    margin-top: 40px;
+    text-align: left;
+    font-weight: bolder;
+}
+
+header a {
+    display: inline-block;
+    margin-left: 4%;
+    font-size: 280%;
+}
+
+header a:link, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+header h4 {
+    font-size: 290%;
+}
+
+div.banner {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    border: 100px;
+}
+
+div.banner-text {
+    margin-left: 60px;
+    margin-right: 50px;
+    font-size: 230%;
+    flex: 40%;
+    inherits:false;
+}
+
+div.banner-text form input {
+    width: 50%;
+    height: 70px;
+    font-size: 50%;
+}
+
+div.banner-text a {
+    font-size: 50%;
+}
+
+div.banner-image {
+    right: 0px;
+    flex: 60%;
+    flex-wrap: wrap;
+}
+
+div.banner-image img {
+    width: fit-content;
+}
+
+div.information {
+    display: flex;
+}
+
+div.info-question {
+    margin: 10px;
+    flex: 40%;
+    font-size: 280%;
+    overflow-wrap: break-word;
+
+}
+
+div.information div.empty {
+    flex: 10%
+}
+
+div.info-text {
+    margin: 50px;
+    flex: 45%;
+    font-size:180%;
+}
+
+div.info-video {
+    margin-left: 30%;
+}
+
+iframe {
     
 }
 
+img {
+    margin: 10px;
+    width:fit-content;
+}
+
+
+footer {
+    margin-left: 5%;
+    margin-bottom: 10px;
+    width: 100%;
+    bottom: 0px;
+    font-size: 140%;
+}
+
+
+div.enter-form {
+    margin-top: 6%;
+    margin-left: 40%;
+    margin-bottom: 10%;
+}
