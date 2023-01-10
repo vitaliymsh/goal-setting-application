@@ -24,6 +24,25 @@ header h4 {
     font-size: 290%;
 }
 
+#footer-name {
+    display: inline-block;
+    margin-right: 5%;
+    font-size: 190%;
+}
+
+footer a:link, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+footer a {
+    margin: 10px;
+}
+
+main {
+    margin-left: 2%;
+    margin-right: 2%;
+}
 div.banner {
     display: flex;
     justify-content: space-evenly;
@@ -104,4 +123,17 @@ div.enter-form {
     margin-top: 6%;
     margin-left: 40%;
     margin-bottom: 10%;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+.enter-form label {
+    margin: 12px;
+}
+
+.enter-form input {
+    margin: 4px;
 }
