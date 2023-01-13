@@ -8,6 +8,16 @@
         <title>
             Goal Create Page
         </title>
+
+        <style>
+            div.enter-form-grid-container {
+            display: grid;
+            grid-template-rows: repeat(8, 60px);
+            grid-template-columns: 150px 400px;
+            column-gap: 10px;
+            row-gap: 10px;
+        }
+        </style>
     </head>
 
     <body>
@@ -15,7 +25,7 @@
             <a href="index.html">GTrack</a> Set your Goals!
         </header>
 
-        <main>
+        <div class="content">
             <div class="opening-text">
                 <h1>Create a New Goal!</h1>
                 <h2>and be <em>smart</em> about it.</h2>
@@ -25,45 +35,35 @@
                 </p>
             </div>
             <div class="enter-form">
-                <h3>Fill in the following fields.</h3>
+                <h2>Fill in the following fields.</h2>
                 <form action="">
-                    <p>
-                        <label for="initial-goal">Initial Goal: </label><br>
+                    <div class="enter-form-grid-container">
+                        <label for="initial-goal">Initial Goal: </label>
                         <textarea name="initial-goal" rows="3" cols="60" placeholder="eg. I want to watch less tv and read more." required></textarea>
-                        <br>
-                        <label for="specific">Specific: </label><br>
+                        <label for="specific">Specific: </label>
                         <textarea name="specific" rows="3" cols="60" placeholder="eg. I want to read at least one book per month instead of watching TV." required></textarea>
-                        <br>
-                        <label for="measurable">Measurable: </label><br>
+                        <label for="measurable">Measurable: </label>
                         <textarea name="measurable" rows="3" cols="60" placeholder="eg. I have joined a book club where we set weekly reading goals." required></textarea>
-                        <br>
-                        <label for="achievable">Achievable: </label><br>
+                        <label for="achievable">Achievable: </label>
                         <textarea name="achievable" rows="3" cols="60" placeholder="eg. I enjoy reading and learning but have just gotten away from it lately." required></textarea>
-                        <br>
-                        <label for="relevant">Relevant: </label><br>
+                        <label for="relevant">Relevant: </label>
                         <textarea name="relevant" rows="3" cols="60" placeholder="eg. By reading, I will learn more about my industry." required></textarea>
-                        <br>
-                        <label for="time-bound">Time Bound: </label><br>
+                        <label for="time-bound">Time Bound: </label>
                         <textarea name="time-bound" rows="3" cols="60" placeholder="eg. I will start next week and do this for six months, then evaluate how it&apos;s going and plan my next steps." required></textarea>
-                        <br>
-                        <label for="final-goal">SMART Goal: </label><br>
+                        <label for="final-goal">SMART Goal: </label>
                         <textarea name="final-goal" rows="3" cols="60" placeholder="eg. I will spend more time reading and less time watching TV by going to a book club every week and completing one book per month for the next six months." required></textarea>
-                        <br>
-                        <label for="goal-deadline">Deadline: </label><br>
-                        <input type="datetime-local" id="goal-deadline" name="goal-deadline">
-                        <br>
-                    </p>
-                    <p>
+                        <label for="goal-deadline">Deadline: </label>
+                        <input type="datetime-local" id="goal-deadline" name="goal-deadline" style="width: 200px;">
                         <input type="submit" value="Submit">
-                    </p>
+                    </div>
                 </form>
             </div>
-        </main>
+        </div>
 
         <footer>
             <a id="footer-name" href="index.html">GTrack</a>
             <a href="">Facebook</a>
-            <a href="">Instragram</a>
+            <a href="">Instagram</a>
             <a href="">Twitter</a>
         </footer>
     </body>

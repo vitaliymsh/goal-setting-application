@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Sign Up</title>
-</head>
-<body>
-    <header>
-        <a href="index.html">GTrack</a>
-        Set your goals!
-    </header>
-    <div class="enter-form">
-        <h2> Register </h2>
-        <form action="">
-            <p>
-                <label for="account-email">Email: </label><input type="email" name="account-email">
-                <br>
-                <label for="account-password">Password: </label><input type="password" name="account-password">
-                <br>
-                <label for="account-userid">User ID: </label><input type="text" name="account-userid">
-                <br>
-                <label for="account-name">Name: </label><input type="text" name="account-name">
-                <br>
-                <label for="account-address">Address: </label><input type="text" name="account-address">
-                <br>
-                <label for="account-country">Country: </label><input type="text" name="account-country">
-                <br>
-                <label for="account-zipcode">ZipCode: </label><input type="text" name="account-zipcode">
-                <br>
-                <label for="account-sex">Sex: </label><input type="text" name="account-sex">
-                <br>
-                <label for="account-language">Language: </label><input type="text" name="account-language">
-                <br>
-                <label for="account-about">About me (Short): </label><input type="text" name="account-about">
-            </p>
-            <p>
-                <input type="submit" value="Register">
-            </p>
-        </form>
-    </div>
-    <footer>
-        <a id="footer-name" href="index.html">GTrack</a>
-        <a href="">Facebook</a>
-        <a href="">Instragram</a>
-        <a href="">Twitter</a>
-    </footer>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/style.css">
+        <title>Sign Up</title>
+    
+        <style>
+        div.enter-form-grid-container {
+            display: grid;
+            grid-template-rows: repeat(11, 20px);
+            grid-template-columns: repeat(2, 150px);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+        }
+        </style>
+    
+    </head>
+    
+    <body>
+        <header>
+            <a href="index.html">GTrack</a>
+            Set your Goals!
+        </header>
+
+        <div class="content">
+            <div class="enter-form">
+                <h2> Register </h2>
+                <form action="">
+                    <div class="enter-form-grid-container">
+                        <label for="account-email">Email: </label><input type="email" name="account-email">
+                        <label for="account-password">Password: </label><input type="password" name="account-password">
+                        <label for="account-userid">User ID: </label><input type="text" name="account-userid">
+                        <label for="account-name">Name: </label><input type="text" name="account-name">
+                        <label for="account-address">Address: </label><input type="text" name="account-address">
+                        <label for="account-country">Country: </label><input type="text" name="account-country">
+                        <label for="account-zipcode">ZipCode: </label><input type="text" name="account-zipcode">
+                        <label for="account-sex">Sex: </label><input type="text" name="account-sex">
+                        <label for="account-language">Language: </label><input type="text" name="account-language">
+                        <label for="account-about">About me (Short): </label><input type="text" name="account-about">
+                        <input type="submit" value="Register">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <a id="footer-name" href="index.html">GTrack</a>
+            <a href="">Facebook</a>
+            <a href="">Instagram</a>
+            <a href="">Twitter</a>
+        </footer>
+    </body>
 </html>

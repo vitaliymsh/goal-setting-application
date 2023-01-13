@@ -8,6 +8,33 @@
         <title>
             Home Page
         </title>
+
+        <style>
+            .goal-list-flex-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-style: solid;
+                border-color: gray;
+                row-gap: 10px;
+            }
+
+            .goal-list-manipulator {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .goal-list-manipulator .icon-button {
+                background: lightgray url(images/add_goal_button.png);
+                background-size: 50px;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+        </style>
     </head>
 
     <body>
@@ -15,22 +42,33 @@
             <a href="index.html">GTrack</a> Set your Goals!
         </header>
 
-        <main>
-            <h1>Home Page</h1>
-            <div class="goal-list-container">
+        <div class="content">
+            <h1>Create Goals</h1>
+            <div class="goal-list-flex-container">
                 <h2>Goal List</h2>
-                <div id="goal-list"> 
-                </div>
+                <!--Test items to remove-->
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <h3>testItem</h3>
+                <!--end-->
             </div>
-            <div class="goal-list-manipulators">
-                <button type="button"><img class="icon" src="images\add_goal_button.png"></button>
+            <br>
+            <div class="goal-list-manipulator">
+                <button id="add_goal_button" class="icon-button" type="button">
+                </button>
             </div>
-        </main>
+        </div>
 
         <footer>
             <a id="footer-name" href="index.html">GTrack</a>
             <a href="">Facebook</a>
-            <a href="">Instragram</a>
+            <a href="">Instagram</a>
             <a href="">Twitter</a>
         </footer>
     </body>
