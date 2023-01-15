@@ -10,6 +10,7 @@
         </title>
 
         <style>
+
             .goal-list-flex-container {
                 display: flex;
                 flex-direction: column;
@@ -34,6 +35,37 @@
                 background-repeat: no-repeat;
             }
 
+            .goal-container {
+                width: 50%;
+                height: auto;
+                border-style: solid;
+                margin: 2%;
+                
+            }
+
+            .goal-container .objective {
+                left: 20%;
+
+                margin: 3%;
+                font-size: 160%;
+            }
+
+
+            .goal-container .goal-criteria {
+                display: flex;
+                
+            }
+
+            .goal-container a {
+                display: inline;
+            }
+
+            .goal-container ul {
+                left: 10px;
+                margin-top: 10px;
+                font-size: 160%;
+            }
+
         </style>
     </head>
 
@@ -43,20 +75,40 @@
         </header>
 
         <div class="content">
-            <h1>Create Goals</h1>
+            <h1>Your Goals!</h1>
             <div class="goal-list-flex-container">
                 <h2>Goal List</h2>
                 <!--Test items to remove-->
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <h3>testItem</h3>
-                <!--end-->
+                <div class="goal-container">
+                    <div class="goal-objective">
+                        <span class="objective">
+                            <a href="subgoals-page.html">Live healthier! </a> 
+                        </span>
+                        <a href="" class="">Edit</a>
+                        <a href="" class="">Delete</a>
+                        <a href="" class="">Done</a>
+        
+                    </div>
+                    <div class="goal-criteria">
+                        <ul>
+                            <li>
+                                S - Sleep, Eat, Do Sports
+                            </li>
+                            <li> 
+                                M - Sleep before 10pm, Eat only healty food, Do sports atleast twice a week
+                            </li>
+                            <li>
+                                A - None
+                            </li>
+                            <li>
+                                R - None
+                            </li>
+                            <li>
+                                T - This year
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <br>
             <div class="goal-list-manipulator">
