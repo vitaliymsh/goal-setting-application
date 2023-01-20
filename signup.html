@@ -11,7 +11,7 @@
             div.enter-form-grid-container {
                 display: grid;
                 grid-template-rows: repeat(11, 20px);
-                grid-template-columns: repeat(2, 150px);
+                grid-template-columns: repeat(2, 180px);
                 grid-column-gap: 10px;
                 grid-row-gap: 10px;
             }
@@ -33,17 +33,38 @@
                 <h2> Register </h2>
                 <form action="">
                     <div class="enter-form-grid-container">
-                        <label for="account-email">Email: </label><input type="email" name="account-email">
-                        <label for="account-password">Password: </label><input type="password" name="account-password">
-                        <label for="account-userid">User ID: </label><input type="text" name="account-userid">
-                        <label for="account-name">Name: </label><input type="text" name="account-name">
-                        <label for="account-address">Address: </label><input type="text" name="account-address">
-                        <label for="account-country">Country: </label><input type="text" name="account-country">
-                        <label for="account-zipcode">ZipCode: </label><input type="text" name="account-zipcode">
-                        <label for="account-sex">Sex: </label><input type="text" name="account-sex">
-                        <label for="account-language">Language: </label><input type="text" name="account-language">
+                        <label for="account-email">Email*: </label><input type="email" id="account-email">
+                        <label id="account-email-valid"></label><br>
+                        <label for="account-password">Password*: </label><input type="password" id="account-password">
+                        <label id="account-password-valid"></label><br>
+                        <label for="account-userid">User ID*: </label><input type="text" id="account-userid">
+                        <label id="account-userid-valid"></label><br>
+                        <label for="account-name">Name*: </label><input type="text" id="account-name">
+                        <label id="account-name-valid"></label><br>
+                        <label for="account-address">Address: </label><input type="text" id="account-address">
+                        <label id="account-address-valid"></label><br>
+                        <label for="account-country">Country*: </label><input type="text" id="account-country">
+                        <label id="account-country-valid"></label><br>
+                        <label for="account-zipcode">ZipCode*: </label><input type="text" id="account-zipcode">
+                        <label id="account-zipcode-valid"></label><br>
+                        <label for="account-sex">Sex*: </label>
+                        <select name="sex-picker-select" id="account-sex">
+                            <option value="male" selected>Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <label id="account-sex-valid"></label><br>
+                        <label for="account-language">Language*: </label>
+                        <select name="language-picker-select" id="account-lang">
+                            <option lang="en" value="english" selected>English</option>
+                            <option lang="es" value="italiano">Espanol</option>
+                            <option lang="de" value="deutsch">Deutsch</option>
+                            <option lang="fr" value="francais">Français</option>
+                        </select>
+                        <label id="account-lang-valid"></label><br>
                         <label for="account-about">About me (Short): </label><input type="text" name="account-about">
-                        <button type="button" onclick="statistics.display()">Register</button>
+                        <label id="account-about-valid"></label><br>
+                        <br>
+                        <button type="button" onclick="submmission()">Register</button>
                     </div>
                 </form>
             </div>
@@ -60,6 +81,7 @@
         </footer>
 
         <script>
+            //Tracking behaviour 
             const date = new Date();
 
             let statistics = {
@@ -88,8 +110,27 @@
             }
             document.addEventListener('click', function() { statistics['total_clicks']++; });
             document.addEventListener('keydown', function() { statistics['total_key_presses']++; });
-            
+            //Validation
+            function validate_userid() {
+                user_form = document.getElementById('account-userid');
+                user_valid = document.getElementById('account-userid-valid');
+                if (user_form.value.length < 5 || user_form.value.length > 12) {
+                    user_valid.innerHTML="Incorrect size";
+                }
+                else {
+                    user_valid.innerHTML="Perfect!";
+                }
+            }
 
+            function validate() {
+                validate_userid();
+            }
+
+
+            function submmission() {
+                statistics.display();
+                validate();
+            }
         </script>
     </body>
 </html>
