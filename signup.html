@@ -10,10 +10,16 @@
         <style>
             div.enter-form-grid-container {
                 display: grid;
-                grid-template-rows: repeat(11, 20px);
+                grid-template-rows: repeat(auto, 20px);
                 grid-template-columns: repeat(2, 180px);
-                grid-column-gap: 10px;
-                grid-row-gap: 10px;
+                column-gap: 10px;
+                row-gap: 10px;
+            }
+
+            #stretched {
+                grid-column-start: 1;
+                grid-column-end: 3;
+                text-align: center;
             }
 
             button {
@@ -34,35 +40,38 @@
                 <form action="">
                     <div class="enter-form-grid-container">
                         <label for="account-email">Email*: </label><input type="email" id="account-email">
-                        <label id="account-email-valid"></label><br>
+                        <div id="stretched"><label id="account-email-valid"></label></div>
                         <label for="account-password">Password*: </label><input type="password" id="account-password">
-                        <label id="account-password-valid"></label><br>
+                        <div id="stretched"><label id="account-password-valid"></label></div>
                         <label for="account-userid">User ID*: </label><input type="text" id="account-userid">
-                        <label id="account-userid-valid"></label><br>
+                        <div id="stretched"><label id="account-userid-valid"></label></div>
                         <label for="account-name">Name*: </label><input type="text" id="account-name">
-                        <label id="account-name-valid"></label><br>
+                        <div id="stretched"><label id="account-name-valid"></label></div>
                         <label for="account-address">Address: </label><input type="text" id="account-address">
-                        <label id="account-address-valid"></label><br>
+                        <div id="stretched"><label id="account-address-valid"></label></div>
                         <label for="account-country">Country*: </label><input type="text" id="account-country">
-                        <label id="account-country-valid"></label><br>
+                        <div id="stretched"><label id="account-country-valid"></label></div>
                         <label for="account-zipcode">ZipCode*: </label><input type="text" id="account-zipcode">
-                        <label id="account-zipcode-valid"></label><br>
+                        <div id="stretched"><label id="account-zipcode-valid"></label></div>
                         <label for="account-sex">Sex*: </label>
                         <select name="sex-picker-select" id="account-sex">
-                            <option value="male" selected>Male</option>
+                            <option disabled selected value="0"> -- select an option -- </option>
+                            <option value="male">Male</option>
                             <option value="female">Female</option>
+                            <option value="other">Other</option>
                         </select>
-                        <label id="account-sex-valid"></label><br>
+                        <div id="stretched"><label id="account-sex-valid"></label></div>
                         <label for="account-language">Language*: </label>
-                        <select name="language-picker-select" id="account-lang">
-                            <option lang="en" value="english" selected>English</option>
+                        <select name="language-picker-select" id="account-language">
+                            <option disabled selected value="0"> -- select an option -- </option>
+                            <option lang="en" value="english">English</option>
                             <option lang="es" value="italiano">Espanol</option>
                             <option lang="de" value="deutsch">Deutsch</option>
                             <option lang="fr" value="francais">Français</option>
                         </select>
-                        <label id="account-lang-valid"></label><br>
+                        <div id="stretched"><label id="account-language-valid"></label></div>
                         <label for="account-about">About me (Short): </label><input type="text" name="account-about">
-                        <label id="account-about-valid"></label><br>
+                        <div id="stretched"><label id="account-about-valid"></label></div>
                         <br>
                         <button type="button" onclick="submmission()">Register</button>
                     </div>
@@ -96,11 +105,11 @@
                         <br>
                         Total mouse clicks: ${this.total_clicks},
                         <br>
-                        Time spent on a page : Minutes - ${Math.floor((current_date.getTime() - this.enter_time) / 60000)}, Seconds - ${Math.floor((current_date.getTime() - this.enter_time) / 1000)} ,
+                        Time spent on a page - Minutes : ${Math.floor((current_date.getTime() - this.enter_time) / 60000)}, Seconds : ${Math.floor((current_date.getTime() - this.enter_time) / 1000)} ,
                         <br>
                         Total key presses: ${this.total_key_presses},
                         <br>
-                        Total number of characters typed: ${[...document.getElementsByTagName('input')].reduce((acc, el) => acc + el.value.length, 0)},
+                        Total number of characters typed: ${[...document.getElementsByTagName('input')].reduce((acc, el) => acc + el.value.length, 0)}
                     `;
                 }
             };
@@ -110,20 +119,267 @@
             }
             document.addEventListener('click', function() { statistics['total_clicks']++; });
             document.addEventListener('keydown', function() { statistics['total_key_presses']++; });
+
             //Validation
+
             function validate_userid() {
                 user_form = document.getElementById('account-userid');
                 user_valid = document.getElementById('account-userid-valid');
+
+                if(user_form.value == "") {
+                    user_valid.innerHTML="Input User ID";
+                    return;
+                }
+
+                if(user_form.value.indexOf(' ') != -1) {
+                    user_valid.innerHTML="User ID should not contain spaces.";
+                    return;
+                }
+                
                 if (user_form.value.length < 5 || user_form.value.length > 12) {
-                    user_valid.innerHTML="Incorrect size";
+                    user_valid.innerHTML="User ID should be 5-12 characters long";
+                    return;
                 }
-                else {
+
+                if(user_form.value.charAt(0) < 'A' || user_form.value.charAt(0) > 'Z') {
+                    user_valid.innerHTML="User ID should begin with capital letter";
+                    return;
+                }
+
+                last_char = user_form.value.slice(-1);
+                if((last_char >= 'A' && last_char <= 'Z') || (last_char >= 'a' && last_char <= 'z')) {
+                    user_valid.innerHTML="User ID should end with a number or a special character"
+                    return;
+                }
+
+                if(user_valid.innerHTML != "") {
                     user_valid.innerHTML="Perfect!";
+                    return;
                 }
+            }
+
+            function validate_userPassword() {
+                password_form = document.getElementById('account-password');
+                password_valid = document.getElementById('account-password-valid');
+
+                if(password_form.value == "") {
+                    password_valid.innerHTML="Input User Password";
+                    return;
+                }
+
+                if(password_form.value.indexOf(' ') != -1) {
+                    password_valid.innerHTML="User Password should not contain spaces.";
+                    password_form.value = "";
+                    return;
+                }
+
+                if (password_form.value.length < 12) {
+                    password_valid.innerHTML="User Password should be 5-12 characters long. Recommended: 14 characters";
+                    password_form.value = "";
+                    return;
+                }
+
+                let upCaseCheck = false;
+                let lowCaseCheck = false;
+                let numCheck = false;
+                let symCheck = false;
+                for(let i = 0; i < password_form.value.length; i++) {
+                    let c = password_form.value.charAt(i);
+                    if(isUpperCase(c)) {
+                        upCaseCheck = true;
+                    }
+                    if(isLowerCase(c)) {
+                        lowCaseCheck = true;
+                    }
+                    if(isDigit(c)) {
+                        numCheck = true;
+                    }
+                    if(isSpecialCharacter(c)) {
+                        symCheck = true;
+                    }
+                }
+                if(!upCaseCheck || !lowCaseCheck || !numCheck || !symCheck) {
+                    password_valid.innerHTML="User Password should contain a mix of alphabets of both cases, numbers and special characters"
+                    return;
+                }
+
+                if(password_valid.innerHTML != "") {
+                    password_valid.innerHTML="Perfect!";
+                    return;
+                }
+            }
+
+            function validate_name() {
+                name_form = document.getElementById('account-name');
+                name_valid = document.getElementById('account-name-valid');
+
+                if(name_form.value == "") {
+                    name_valid.innerHTML="Input Name";
+                    return;
+                }
+
+                let check = true;
+                for(let i = 0; i < name_form.value.length; i++) {
+                    if(isDigit(name_form.value.charAt(i))) {
+                        check = false;
+                        break;
+                    }
+
+                    if(isSpecialCharacter(name_form.value.charAt(i))) {
+                        check = false;
+                        break;
+                    }
+                }
+                if(check == false) {
+                    name_valid.innerHTML="Name should only contain alphabets."
+                    return;
+                }
+
+                if(name_valid.innerHTML != "") {
+                    name_valid.innerHTML="Perfect!";
+                    return;
+                }
+            }
+
+            function validate_country() {
+                country_form = document.getElementById('account-country');
+                country_valid = document.getElementById('account-country-valid');
+
+                if(country_form.value == "") {
+                    country_valid.innerHTML="Input Country";
+                    return;
+                }
+
+                if(country_valid.innerHTML != "") {
+                    country_valid.innerHTML="Perfect!";
+                    return;
+                }
+
+            }
+
+            function validate_zipcode() {
+                zipcode_form = document.getElementById('account-zipcode');
+                zipcode_valid = document.getElementById('account-zipcode-valid');
+
+                if(zipcode_form.value == "") {
+                    zipcode_valid.innerHTML="Input Zipcode";
+                    return;
+                }
+
+                if(zipcode_form.value.length != 6) {
+                    zipcode_valid.innerHTML="Zipcode should be 6 characters long";
+                    return;
+                }
+
+                if(!isDigit(zipcode_form.value.charAt(0)) || !isDigit(zipcode_form.value.charAt(1)) || !isDigit(zipcode_form.value.charAt(2)) || !isDigit(zipcode_form.value.charAt(3)) || !isLetter(zipcode_form.value.charAt(4)) || !isLetter(zipcode_form.value.charAt(5))) {
+                    zipcode_valid.innerHTML="Zipcode should be of the format: 0000XX"
+                    return;
+                }
+
+                if(zipcode_valid.innerHTML != "") {
+                    zipcode_valid.innerHTML="Perfect!";
+                    return;
+                }
+            }
+
+            function validate_sex() {
+                sex_form = document.getElementById('account-sex');
+                sex_valid = document.getElementById('account-sex-valid');
+
+                if(sex_form.selectedIndex == "0") {
+                    sex_valid.innerHTML="Select an option";
+                    return;
+                }
+
+                if(sex_valid.innerHTML != "") {
+                    sex_valid.innerHTML="Perfect!";
+                    return;
+                }
+            }
+
+            function validate_language() {
+                language_form = document.getElementById('account-language');
+                language_valid = document.getElementById('account-language-valid');
+
+                if(language_form.selectedIndex == "0") {
+                    language_valid.innerHTML="Select an option"
+                    return;
+                }
+
+                if(language_valid.innerHTML != "") {
+                    language_valid.innerHTML="Perfect!"
+                    return;
+                }
+            }
+
+            function validate_email() {
+                email_form = document.getElementById('account-email');
+                email_valid = document.getElementById('account-email-valid');
+
+                if(email_form.value == "") {
+                    email_valid.innerHTML="Input Email";
+                    return;
+                }
+
+                if(!(email_form.value.includes("@")) || !(email_form.value.endsWith(".com"))) {
+                    email_valid.innerHTML="Email should be of the format: validUsername@providerMail.com";
+                    return;
+                }
+
+                let name = email_form.value.substring(0, email_form.value.indexOf("@"));
+                let domain = email_form.value.substring(email_form.value.indexOf("@") + 1, email_form.value.length);
+
+                if(name.includes("@") || domain.includes("@")) {
+                    email_valid.innerHTML="Email should be of the format: validUsername@providerMail.com";
+                    return;
+                }
+
+                if(email_valid.innerHTML != "") {
+                    email_valid.innerHTML="Perfect!";
+                    return;
+                }
+            }
+
+            function isUpperCase(c) {
+                if(c >= 'A' && c <= 'Z') {
+                    return true;
+                }
+                return false;
+            }
+            function isLowerCase(c) {
+                if(c >= 'a' && c <= 'z') {
+                    return true;
+                }
+                return false;
+            }
+            function isDigit(c) {
+                if(c >= '0' && c <= '9') {
+                    return true;
+                }
+                return false;
+            }
+            function isSpecialCharacter(c) {
+                if(!isUpperCase(c) && !isLowerCase(c) && !isDigit(c) && c != ' ') {
+                    return true;
+                }
+                return false;
+            }
+            function isLetter(c) {
+                if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+                    return true;
+                }
+                return false;
             }
 
             function validate() {
                 validate_userid();
+                validate_userPassword();
+                validate_name();
+                validate_country();
+                validate_zipcode();
+                validate_sex();
+                validate_language();
+                validate_email();
             }
 
 
