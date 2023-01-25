@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/style.css">
+        <title>Sign Up</title>
+    
+        <style>
+            div.enter-form-grid-container {
+                display: grid;
+                grid-template-rows: repeat(auto, 20px);
+                grid-template-columns: repeat(2, 180px);
+                column-gap: 10px;
+                row-gap: 10px;
+            }
+
+            #stretched {
+                grid-column-start: 1;
+                grid-column-end: 3;
+                text-align: center;
+            }
+
+            button {
+                height: 1.9rem;
+            }
+        </style>
+    </head>
+    
+    <body onload="initialise_time()">
+        <header>
+            <a href="index.html">GTrack</a>
+            Set your Goals!
+        </header>
+        
+        <div class="content">
+            <div class="enter-form">
+                <h2> Register </h2>
+                <form action="">
+                    <div class="enter-form-grid-container">
+                        <label for="account-email">Email*: </label><input type="email" id="account-email" required>
+                        <div id="stretched"><label id="account-email-valid"></label></div>
+                        <label for="account-password">Password*: </label><input type="password" id="account-password" required>
+                        <div id="stretched"><label id="account-password-valid"></label></div>
+                        <label for="account-userid">User ID*: </label><input type="text" id="account-userid" required>
+                        <div id="stretched"><label id="account-userid-valid"></label></div>
+                        <label for="account-name">Name*: </label><input type="text" id="account-name" required>
+                        <div id="stretched"><label id="account-name-valid"></label></div>
+                        <label for="account-address">Address: </label><input type="text" id="account-address">
+                        <div id="stretched"><label id="account-address-valid"></label></div>
+                        <label for="account-country">Country*: </label><input type="text" id="account-country" required>
+                        <div id="stretched"><label id="account-country-valid"></label></div>
+                        <label for="account-zipcode">ZipCode*: </label><input type="text" id="account-zipcode" required>
+                        <div id="stretched"><label id="account-zipcode-valid"></label></div>
+                        <label for="account-sex">Sex*: </label>
+                        <select name="sex-picker-select" id="account-sex" required>
+                            <option disabled selected value="0"> -- select an option -- </option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div id="stretched"><label id="account-sex-valid"></label></div>
+                        <label for="account-language">Language*: </label>
+                        <select name="language-picker-select" id="account-language" required>
+                            <option disabled selected value="0"> -- select an option -- </option>
+                            <option lang="en" value="english">English</option>
+                            <option lang="es" value="italiano">Espanol</option>
+                            <option lang="de" value="deutsch">Deutsch</option>
+                            <option lang="fr" value="francais">Français</option>
+                        </select>
+                        <div id="stretched"><label id="account-language-valid"></label></div>
+                        <label for="account-about">About me (Short): </label><input type="text" name="account-about">
+                        <div id="stretched"><label id="account-about-valid"></label></div>
+                        <br>
+                        <button type="submit" onclick="submmission()">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div id="stat-result">
+                
+            </div>
+        </div>
+
+        <footer>
+            <a id="footer-name" href="index.html">GTrack</a>
+            <a href="">Facebook</a>
+            <a href="">Instagram</a>
+            <a href="">Twitter</a>
+        </footer>
+
+        <script>
+            //Tracking behaviour 
+            const date = new Date();
+
+            let statistics = {
+                total_clicks : 0,
+                enter_time : 0,
+                total_key_presses : 0,
+                total_number_characters : 0,
+                display : function() {
+                    let current_date = new Date();
+                    document.getElementById('stat-result').innerHTML = `
+                        Statistics:
+                        <br>
+                        Total mouse clicks: ${this.total_clicks},
+                        <br>
+                        Time spent on a page - Minutes : ${Math.floor((current_date.getTime() - this.enter_time) / 60000)}, Seconds : ${Math.floor((current_date.getTime() - this.enter_time) / 1000)} ,
+                        <br>
+                        Total key presses: ${this.total_key_presses},
+                        <br>
+                        Total number of characters typed: ${[...document.getElementsByTagName('input')].reduce((acc, el) => acc + el.value.length, 0)}
+                    `;
+                }
+            };
+
+            function initialise_time() {
+                statistics['enter_time'] = date.getTime();
+            }
+            document.addEventListener('click', function() { statistics['total_clicks']++; });
+            document.addEventListener('keydown', function() { statistics['total_key_presses']++; });
+
+            
+            function submmission() {
+                statistics.display();
+            }
+        </script>
+    </body>
+</html>
