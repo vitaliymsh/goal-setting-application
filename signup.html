@@ -91,14 +91,15 @@
 
         <script>
             //Tracking behaviour 
+            //Saving the startup time
             const date = new Date();
-
+            //Setting up a strcture to save the statistics
             let statistics = {
-                total_clicks : 0,
-                enter_time : 0,
-                total_key_presses : 0,
-                total_number_characters : 0,
-                display : function() {
+                total_clicks : 0, //Amount of clicks
+                enter_time : 0, //Time entered
+                total_key_presses : 0, // Amount of key presses
+                total_number_characters : 0, // Number of typed characters
+                display : function() {  //Display function to display the statisitcs
                     let current_date = new Date();
                     document.getElementById('stat-result').innerHTML = `
                         Statistics:
@@ -117,7 +118,9 @@
             function initialise_time() {
                 statistics['enter_time'] = date.getTime();
             }
+            //Event on a click on a page to increment the count
             document.addEventListener('click', function() { statistics['total_clicks']++; });
+            //Even on a key presses on a page to increment the count
             document.addEventListener('keydown', function() { statistics['total_key_presses']++; });
 
             //Validation
