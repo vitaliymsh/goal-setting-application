@@ -389,6 +389,17 @@
             function submmission() {
                 statistics.display();
                 validate();
+                alert(`
+                Email: ${document.getElementById('account-email').value}
+                Password: ${document.getElementById('account-password').value}
+                User ID: ${document.getElementById('account-userid').value}
+                Account Name: ${document.getElementById('account-name').value}
+                Address: ${document.getElementById('account-address').value}
+                Country: ${document.getElementById('account-country').value}
+                ZipCode: ${document.getElementById('account-zipcode').value}
+                Sex: ${document.getElementById('account-sex').value}
+                Language: ${document.getElementById('account-language').value}
+                `);
             }
         </script>
     </body>
